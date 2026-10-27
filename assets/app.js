@@ -12,7 +12,7 @@
           <div class="panel-head"><p>${form.intro}</p><a href="forms/${key}.html">進入完整 ${form.label} 頁面 →</a></div>
           <div class="quick-chapters">
             ${form.chapters.map((ch, chapterIndex) => `
-              <details class="quick-chapter ${ch[3] ? 'has-resource' : ''}" data-search="${escapeHTML([form.label, ch[0], ch[1], ...ch[2]].join(' '))}">
+              <details class="quick-chapter ${resourceCount(ch) ? 'has-resource' : ''}" data-search="${escapeHTML([form.label, ch[0], ch[1], ...ch[2]].join(' '))}">
                 <summary>
                   <span class="quick-index">${String(chapterIndex + 1).padStart(2, '0')}</span>
                   <span><strong>${ch[1]}</strong><small>${ch[0]}</small></span>
@@ -21,8 +21,9 @@
                 <div class="section-menu">
                   ${ch[2].map((section, sectionIndex) => {
                     const sectionCode = `${chapterIndex + 1}.${sectionIndex + 1}`;
-                    return ch[3] && sectionIndex === 0
-                      ? `<a class="section-row section-live" href="${ch[3]}"><span>${sectionCode}</span><b>${section}</b><em>互動程式 ↗</em></a>`
+                    const url = sectionUrl(ch, sectionIndex);
+                    return url
+                      ? `<a class="section-row section-live" href="${url}"><span>${sectionCode}</span><b>${section}</b><em>互動程式 ↗</em></a>`
                       : `<div class="section-row"><span>${sectionCode}</span><b>${section}</b><em>準備中</em></div>`;
                   }).join('')}
                 </div>
@@ -77,7 +78,7 @@
         <span><strong>數學學習導航</strong><small>Math Learning Hub</small></span>
       </a>
       <nav aria-label="年級導覽">${navItems}</nav>
-      <div class="sidebar-footer"><span class="status-dot"></span><span>1 個互動程式已上線</span></div>
+      <div class="sidebar-footer"><span class="status-dot"></span><span>${form.chapters.reduce((sum, ch) => sum + resourceCount(ch), 0)} 個互動程式已上線</span></div>
     </aside>
 
     <div class="page-wrap">
@@ -131,22 +132,39 @@
   scrim.addEventListener('click', () => toggleMenu(false));
 
   function chapterCard(ch, index, accent) {
-    const [en, zh, points, url] = ch;
+    const [en, zh, points] = ch;
+    const liveCount = resourceCount(ch);
     const searchable = [en, zh, ...points].join(' ');
-    return `<article class="chapter-card ${url ? 'is-live' : ''}" data-search="${escapeHTML(searchable)}">
+    return `<article class="chapter-card ${liveCount ? 'is-live' : ''}" data-search="${escapeHTML(searchable)}">
       <div class="chapter-index"><span>CH.</span><strong>${String(index + 1).padStart(2, '0')}</strong></div>
       <div class="chapter-content">
         <div class="chapter-heading">
           <div><p>${zh}</p><h2>${en}</h2></div>
-          ${url ? '<span class="available-tag">● 已上線</span>' : '<span class="coming-tag">準備中</span>'}
+          ${liveCount ? `<span class="available-tag">● ${liveCount} 個資源已上線</span>` : '<span class="coming-tag">準備中</span>'}
         </div>
-        <div class="knowledge-points">${points.map((p, sectionIndex) => `<span><b>${index + 1}.${sectionIndex + 1}</b>${p}</span>`).join('')}</div>
-        ${url ? `<a class="chapter-button" href="${url}">進入 Chapter ${index + 1} 互動程式 <span>↗</span></a>` : '<p class="coming-copy">互動內容將逐步加入</p>'}
+        <div class="knowledge-points">${points.map((p, sectionIndex) => {
+          const url = sectionUrl(ch, sectionIndex);
+          const content = `<b>${index + 1}.${sectionIndex + 1}</b>${p}${url ? '<em>↗</em>' : ''}`;
+          return url ? `<a class="knowledge-link" href="${url}">${content}</a>` : `<span>${content}</span>`;
+        }).join('')}</div>
+        ${liveCount ? '<p class="coming-copy">點擊已上線的知識點進入互動程式</p>' : '<p class="coming-copy">互動內容將逐步加入</p>'}
       </div>
     </article>`;
   }
 
   function escapeHTML(value) {
     return value.replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+
+  function sectionUrl(chapter, sectionIndex) {
+    const resources = chapter[3];
+    if (Array.isArray(resources)) return resources[sectionIndex] || '';
+    return sectionIndex === 0 ? (resources || '') : '';
+  }
+
+  function resourceCount(chapter) {
+    const resources = chapter[3];
+    if (Array.isArray(resources)) return resources.filter(Boolean).length;
+    return resources ? 1 : 0;
   }
 })();

@@ -56,4 +56,5 @@
 .section-row:last-child{border-bottom:0}.section-row>span{font-weight:800;color:var(--accent)}.section-row>b{font-weight:600}.section-row>em{font-style:normal;color:#a0a6af;font-size:9px}
 .section-row.section-live{margin-top:3px;border-radius:8px;background:#e6f7e9;border-bottom:0}.section-row.section-live>em{color:#197d4c;font-weight:700}
 .knowledge-points span{display:inline-flex;align-items:center;gap:7px}.knowledge-points span b{color:var(--accent);font-size:10px}
+.knowledge-points a{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid #cfe5c9;border-radius:8px;background:#fff;color:#197d4c;font-size:12px;font-weight:700;transition:.2s}.knowledge-points a:hover{transform:translateY(-2px);box-shadow:0 7px 16px rgba(25,125,76,.12)}.knowledge-points a b{color:var(--accent);font-size:10px}.knowledge-points a em{font-style:normal}
 @media (max-width:650px){.global-search{margin-top:0}.quick-chapter{padding:0}.quick-chapter summary{grid-template-columns:27px 1fr 27px;padding:15px 12px}.section-row{grid-template-columns:36px 1fr}.section-row>em{grid-column:2}.quick-chapter>a{grid-column:auto;margin-top:0}}
