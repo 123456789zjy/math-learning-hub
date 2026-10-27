@@ -6,7 +6,7 @@ const CURRICULUM = {
       ["Directed Numbers", "有向數", ["數線與大小比較", "有向數四則運算", "混合運算"]],
       ["Algebraic Expressions", "代數式", ["代數符號與項", "同類項", "代入法與化簡"]],
       ["Linear Equations in One Unknown (I)", "一元一次方程（一）", ["等式性質", "建立及解簡單方程", "答案驗算"]],
-      ["Areas and Volumes (I)", "面積和體積（一）", ["多邊形及面積", "稜柱", "稜柱體積", "直稜柱總表面面積"], ["https://123456789zjy.github.io/s1-ch05-area-lab/", "https://123456789zjy.github.io/s1-ch05-prism-lab/"]],
+      ["Areas and Volumes (I)", "面積和體積（一）", ["多邊形及面積", "稜柱", "稜柱體積", "直稜柱總表面面積"], ["https://123456789zjy.github.io/s1-ch05-area-lab/", "https://123456789zjy.github.io/s1-ch05-prism-lab/", "https://123456789zjy.github.io/s1-ch05-volume-lab/", "https://123456789zjy.github.io/s1-ch05-surface-area-lab/"]],
       ["Manipulations of Polynomials", "多項式的運算", ["多項式加減", "單項式乘法", "展開簡單代數式"]],
       ["Linear Equations in One Unknown (II)", "一元一次方程（二）", ["含括號及分數的方程", "應用題建模"]],
       ["Statistics (I)", "統計（一）", ["數據搜集與分類", "頻數表", "統計圖表"]],
