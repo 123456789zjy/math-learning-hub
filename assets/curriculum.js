@@ -28,7 +28,7 @@ const CURRICULUM = {
       ["Algebraic Fractions and Formulas", "代數分式與公式", ["代數分式運算", "公式主項變換", "代入應用"]],
       ["Errors in Measurement", "量度的誤差", ["上限與下限", "絕對誤差", "百分誤差"]],
       ["Statistics (II)", "統計（二）", ["組織數據", "統計圖比較", "誤導性圖表"]],
-      ["Linear Inequalities in One Unknown", "一元一次不等式", ["不等式性質", "解不等式", "數線表示"]],
+      ["Linear Inequalities in One Unknown", "一元一次不等式", ["不等式性質", "解不等式", "數線表示"], ["", "https://123456789zjy.github.io/math-learning-hub/labs/s2/ch08-inequality/", ""]],
       ["Linear Equations in Two Unknowns", "二元一次方程", ["聯立方程", "代入法", "消元法與應用"]],
       ["Pythagoras’ Theorem and Irrational Numbers", "畢氏定理與無理數", ["畢氏定理", "逆定理", "無理數與根式"]],
       ["Geometric Proofs", "幾何證明", ["已知與求證", "演繹步驟", "理由書寫"]],
