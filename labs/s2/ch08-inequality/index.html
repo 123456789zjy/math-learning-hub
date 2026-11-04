@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17233f">
+  <title>S2 8.2 不等式變換實驗室</title>
+  <meta name="description" content="中二數學8.2：用數線、代數變換和驗算理解及解一元一次不等式。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+  <header class="mast">
+    <div class="brand">
+      <div class="brandmark" aria-hidden="true">≷</div>
+      <div><small>S2 · CHAPTER 8 · SECTION 8.2</small><h1 data-i18n="title">不等式變換實驗室</h1></div>
+    </div>
+    <p class="mast-note" data-i18n="tagline">代數變換 × 數線 × 驗算</p>
+    <a class="home-link" href="https://123456789zjy.github.io/math-learning-hub/">
+      <span aria-hidden="true">←</span><span><b>Math Learning Hub</b><small data-i18n="home">返回課程導航</small></span>
+    </a>
+    <div class="language" role="group" aria-label="Language 語言">
+      <button type="button" data-lang="zh">中文</button><button type="button" data-lang="en">English</button><button type="button" data-lang="both" class="active">中英</button>
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label="Learning modules">
+    <button class="active" data-module="meaning" type="button"><span>01</span><b data-i18n="tabMeaning">解是甚麼？</b></button>
+    <button data-module="property" type="button"><span>02</span><b data-i18n="tabProperty">為何要反轉？</b></button>
+    <button data-module="solver" type="button"><span>03</span><b data-i18n="tabSolver">一步步解題</b></button>
+  </nav>
+
+  <main>
+    <section class="module active" id="meaningModule">
+      <div class="module-head">
+        <div><span class="eyebrow" data-i18n="bridge">概念橋樑</span><h2 data-i18n="meaningTitle">方程是一個位置；不等式是一段範圍</h2></div>
+        <p data-i18n="meaningLead">拖動 x，找出哪些數令 x − 3 &gt; 0 成立。</p>
+      </div>
+      <div class="lesson-grid">
+        <article class="stage-card">
+          <div class="equation-display"><span>x − 3 &gt; 0</span><strong id="meaningVerdict">成立</strong></div>
+          <svg id="meaningLine" class="number-line" viewBox="0 0 900 260" role="img" aria-label="Interactive number line"></svg>
+          <label class="slider-card"><span><b data-i18n="dragX">拖動 x</b><output id="xOutput">4</output></span><input id="xSlider" type="range" min="-10" max="12" step="1" value="4"></label>
+        </article>
+        <aside class="teacher-card">
+          <span class="teacher-label" data-i18n="teacherLens">教師提問</span>
+          <h3 data-i18n="meaningQuestion">哪些 x 可以令左邊大於 0？答案只有一個嗎？</h3>
+          <div class="comparison">
+            <div><small data-i18n="equation">方程</small><b>x − 3 = 0</b><span>x = 3</span></div>
+            <div class="active"><small data-i18n="inequality">不等式</small><b>x − 3 &gt; 0</b><span>x &gt; 3</span></div>
+          </div>
+          <button class="primary" id="meaningReveal" type="button" data-i18n="revealSet">顯示所有解</button>
+          <p class="tip" data-i18n="meaningTip">先測試 2、3、4，再把零散答案連成一條射線。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="module" id="propertyModule">
+      <div class="module-head">
+        <div><span class="eyebrow" data-i18n="coreConcept">核心概念</span><h2 data-i18n="propertyTitle">負數把數線反射，大小次序亦隨之交換</h2></div>
+        <p data-i18n="propertyLead">只改變運算中的一個條件，觀察甚麼保持不變。</p>
+      </div>
+      <div class="property-layout">
+        <article class="stage-card property-stage">
+          <div class="operation-switch" role="group">
+            <button class="active" data-operation="multiply" type="button" data-i18n="multiplyMode">同乘 k</button>
+            <button data-operation="add" type="button" data-i18n="addMode">同加 k</button>
+          </div>
+          <div class="transform-equation" id="transformEquation">2 &lt; 5　⟶　−4 &gt; −10</div>
+          <div class="phase-rail" id="phaseRail" role="group" aria-label="Transformation stages">
+            <button type="button" data-phase="0"><span>1</span><b data-i18n="phase1">原來次序</b></button>
+            <button type="button" data-phase="1"><span>2</span><b data-i18n="phase2">同乘負數</b></button>
+            <button type="button" data-phase="2"><span>3</span><b data-i18n="phase3">穿越零點</b></button>
+            <button type="button" data-phase="3"><span>4</span><b data-i18n="phase4">位置交換</b></button>
+            <button type="button" data-phase="4"><span>5</span><b data-i18n="phase5">反轉符號</b></button>
+          </div>
+          <svg id="propertyLine" class="number-line tall" viewBox="0 0 900 430" role="img" aria-label="Inequality transformation on a number line"></svg>
+          <label class="transform-progress"><span><b data-i18n="transformProgress">變換進度</b><output id="progressOutput">0%</output></span><input id="propertyProgress" type="range" min="0" max="400" step="1" value="0"></label>
+          <div class="property-controls">
+            <label><span><b>A</b><output id="aOutput">2</output></span><input id="aSlider" type="range" min="-12" max="10" step="1" value="2"></label>
+            <label><span><b>B</b><output id="bOutput">5</output></span><input id="bSlider" type="range" min="-10" max="12" step="1" value="5"></label>
+            <label class="accent"><span><b>k</b><output id="kOutput">−2</output></span><input id="kSlider" type="range" min="-5" max="5" step="1" value="-2"></label>
+          </div>
+          <div class="value-presets" id="valuePresets" aria-label="Example value pairs">
+            <span data-i18n="quickExamples">快捷例子</span>
+            <button type="button" data-a="2" data-b="5">2 &lt; 5</button><button type="button" data-a="-5" data-b="-2">−5 &lt; −2</button><button type="button" data-a="-4" data-b="3">−4 &lt; 3</button><button type="button" data-a="0" data-b="6">0 &lt; 6</button><button type="button" data-a="-9" data-b="8">−9 &lt; 8</button>
+          </div>
+        </article>
+        <aside class="teacher-card">
+          <div class="phase-copy"><span class="teacher-label" id="phaseNumber">步驟 1／5</span><h3 id="phaseTitle"></h3><p id="phaseBody"></p><div class="phase-question"><small data-i18n="askStudents">可問學生</small><b id="phaseQuestion"></b></div></div>
+          <div class="rule-status" id="ruleStatus"></div>
+          <div class="contrast-buttons">
+            <button type="button" data-k="2">× (+2)</button><button type="button" data-k="-2">× (−2)</button><button type="button" data-k="0">× 0</button>
+          </div>
+          <div class="property-actions"><button class="secondary" id="prevPhase" type="button" data-i18n="previous">上一步</button><button class="primary" id="playK" type="button" data-i18n="playReflection">播放完整變換</button><button class="secondary" id="nextPhase" type="button" data-i18n="next">下一步</button></div>
+          <div class="mistake-box">
+            <label class="switch"><input id="mistakeToggle" type="checkbox"><span></span></label>
+            <div><b data-i18n="mistakeDemo">錯誤示範</b><p data-i18n="mistakePrompt">故意不反轉不等號，再用一個數驗算。</p></div>
+          </div>
+          <div id="mistakeResult" class="feedback" hidden></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="module" id="solverModule">
+      <div class="module-head">
+        <div><span class="eyebrow" data-i18n="workedExamples">例題示範</span><h2 data-i18n="solverTitle">每一步都對兩邊做相同運算</h2></div>
+        <p data-i18n="solverLead">選擇筆記中的代表題型，再逐步播放。</p>
+      </div>
+      <div class="example-pick" id="examplePick"></div>
+      <div class="lesson-grid">
+        <article class="stage-card solver-stage">
+          <div class="step-counter"><span id="stepType"></span><b id="stepCount"></b></div>
+          <div class="solver-expression" id="solverExpression"></div>
+          <div class="operation-card" id="operationCard"></div>
+          <svg id="solverLine" class="number-line compact" viewBox="0 0 900 230" role="img" aria-label="Solution on a number line"></svg>
+          <div class="step-controls">
+            <button class="secondary" id="prevStep" type="button" data-i18n="previous">上一步</button>
+            <button class="primary" id="nextStep" type="button" data-i18n="next">下一步</button>
+            <button class="secondary" id="playSteps" type="button" data-i18n="playAll">自動播放</button>
+          </div>
+        </article>
+        <aside class="teacher-card">
+          <span class="teacher-label" data-i18n="teachingFocus">本步重點</span>
+          <h3 id="stepFocus"></h3>
+          <p id="stepExplain" class="teacher-explain"></p>
+          <div class="ask-box"><small data-i18n="askStudents">可問學生</small><p id="stepQuestion"></p></div>
+          <button class="danger-soft" id="showCommonMistake" type="button" data-i18n="showMistake">顯示常見錯誤</button>
+          <div id="commonMistake" class="feedback" hidden></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="student-zone" id="challengeModule">
+      <div class="zone-divider"><span data-i18n="studentZone">學生獨立練習區</span></div>
+      <div class="module-head">
+        <div><span class="eyebrow" data-i18n="independentPractice">獨立練習</span><h2 data-i18n="challengeTitle">隨機挑戰：每次題目都不同</h2></div>
+        <div class="score"><span data-i18n="score">得分</span><b id="score">0</b><span data-i18n="streak">連勝</span><b id="streak">0</b></div>
+      </div>
+      <div class="level-tabs" role="group"><button class="active" data-level="easy" type="button" data-i18n="easy">基礎</button><button data-level="medium" type="button" data-i18n="medium">標準</button><button data-level="hard" type="button" data-i18n="hard">挑戰</button></div>
+      <div class="challenge-grid">
+        <article class="question-card">
+          <div class="question-meta"><span id="difficultyTag">基礎</span><span id="questionKind"></span></div>
+          <h3 id="challengeQuestion"></h3>
+          <svg id="challengeFigure" class="number-line compact" viewBox="0 0 900 230" role="img" aria-label="Question number line"></svg>
+          <div class="options" id="challengeOptions"></div>
+          <div class="challenge-actions"><button class="secondary" id="newQuestion" type="button" data-i18n="newQuestion">換一題</button><button class="primary" id="checkAnswer" type="button" data-i18n="check">檢查答案</button></div>
+        </article>
+        <aside class="teacher-card practice-side">
+          <span class="teacher-label" data-i18n="diagnosis">錯誤診斷</span>
+          <div id="challengeFeedback" class="feedback neutral" data-i18n="chooseAnswer">選擇答案後按「檢查答案」。</div>
+          <div class="diagnostic-list"><span data-i18n="diag1">↔ 不等號方向</span><span data-i18n="diag2">○／● 邊界</span><span data-i18n="diag3">→ 數線方向</span><span data-i18n="diag4">ℤ 整數限制</span></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer><span data-i18n="footer">根據學校 S2 Chapter 8《Inequalities》8.2 的教學次序設計。</span></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
